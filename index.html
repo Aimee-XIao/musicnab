@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+        ul {
+            list-style: none;
+        }
+        h1 {
+            width: 200px;
+            height: 20px;
+            margin: 20px auto;
+            color: #cc9797;
+        }
+        ul {
+            width: 740px;
+            height: 35px;
+            margin: 100px auto;
+                 }
+        li {
+            top:0;
+            left: 0;
+            width: 80px;
+            height: 30px;
+            border: 1px solid #2ce97a;
+            float:left;
+            margin-left: -1px;
+            position: relative;
+            overflow: hidden;
+        }
+        span {
+            width: 80px;
+            height: 30px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 99;
+            text-align: center ;
+            line-height: 30px;
+        }
+        i {
+            width: 80px;
+            height: 30px;
+            background-color: red;
+            position: absolute;
+            bottom:-30px;
+            left:0;
+        }
+        .pu {
+            width: 500px;
+            margin: 100px auto;
+        }
+        p {
+            width: 500px;
+            margin-left: 20px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<h1>数字钢琴</h1>
+<ul>
+    <li><span>1</span><i></i></li>
+    <li><span>2</span><i></i></li>
+    <li><span>3</span><i></i></li>
+    <li><span>4</span><i></i></li>
+    <li><span>5</span><i></i></li>
+    <li><span>6</span><i></i></li>
+    <li><span>7</span><i></i></li>
+    <li><span>8</span><i></i></li>
+    <li><span>9</span><i></i></li>
+</ul>
+<audio src="m/1.mp3"></audio>
+<audio src="m/2.mp3"></audio>
+<audio src="m/3.mp3"></audio>
+<audio src="m/4.mp3"></audio>
+<audio src="m/5.mp3"></audio>
+<audio src="m/6.mp3"></audio>
+<audio src="m/7.mp3"></audio>
+<audio src="m/8.mp3"></audio>
+<audio src="m/9.mp3"></audio>
+<div class="pu">
+    <p>
+        卡农
+        3217 6567 3217
+        6567 1713511164531557
+        12345254365454321 667176543265654
+        33221133 6567
+        53453455671234 31233456545171 617654545451756 17171712123671
+    </p>
+    <p>
+        欢乐颂
+        3345 5432 1123 322-
+
+        3345 5432 1123 211-
+
+        2231 2 34 31 2 34 32 12(5)3
+
+        3345 54 34 2 1123 211-
+    </p>
+    <p>
+        小星星
+        1 1 5 5 6 6 5－ 4 4 3 3 2 2 1－
+
+        5 5 4 4 3 3 2－ 5 5 4 4 3 3 2－
+
+        1 1 5 5 6 6 5－ 4 4 3 3 2 2 1－
+    </p>
+    <p>
+        生日快乐
+        55 65 87- 55 65 21-
+
+        55 53 176- 44 31 21-
+    </p>
+    <p>
+        我是一个粉刷匠
+        5353531 24325 5353531 24321
+
+        2244315 24325 5353531 24321
+    </p>
+
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+    var audios = document.querySelectorAll('audio');
+    var colorArr = ['red','orange','green','blue','purple','skyblue','#EE6B4C','#2CE97A','#FFAFF0']
+    $('i').each(function (i,e) {
+        $(e).css('background',colorArr[i]);
+    });
+    $('li').hover(function () {
+        var index = $(this).index();
+        $('li').eq(index).children('i').stop().animate({bottom:0},200);
+        audios[index].load();
+        audios[index].play();
+    },function () {
+        var index = $(this).index();
+        $('li').eq(index).children('i').stop().animate({bottom:-30},200);
+    });
+    $(window).keyup(function (e) {
+        console.log(e.keyCode);
+
+        if(e.keyCode>=49 && e.keyCode<=57){
+            var index = e.keyCode-49;
+            $('li').eq(index).trigger('mouseenter');
+        }
+        setTimeout(function () {
+            $('li').eq(index).trigger('mouseleave');
+        },200)
+    })
+
+</script>
+</html>
